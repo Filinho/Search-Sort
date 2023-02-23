@@ -28,6 +28,8 @@ public:
 
     Node * EndHeadNode;
 
+    int n_element;
+
     void PushFront(const int & data){
 
         Node * newNode = new Node(data);
@@ -37,6 +39,7 @@ public:
         oldStart->Prev = newNode;
         newNode->Next = oldStart;
         StartHeadNode->Next = newNode;
+        n_element ++;
     }
 
     void PushBack(const int & data){
@@ -49,14 +52,15 @@ public:
 
         oldEnd->Next = newNode;
         EndHeadNode->Prev = newNode;
+        n_element ++;
     }
 
-    void TranspFront(Node * node){
+    void SwapFront(Node * node){
         if(node->Next == EndHeadNode) return;
-        TranspBack(node->Next);
+        SwapBack(node->Next);
     }
 
-    void TranspBack(Node * node){
+    void SwapBack(Node * node){
 
         if(node->Prev == StartHeadNode) return;
         Node * aux = node->Prev;
@@ -69,6 +73,17 @@ public:
         node->Next = aux;
     }
     
+    void BubbleSort(){
+        bool Swap = true;
+        int aux = n_element -1;
+        int n = n_element;
+
+        while(Swap){
+            Swap = false;
+        }
+
+    }
+    // default constructor, that initialize both headnodes, and a empty List
     LinkedList(){
 
         StartHeadNode = new Node(0);
@@ -76,34 +91,36 @@ public:
 
         StartHeadNode->Next = EndHeadNode;
         EndHeadNode->Prev = StartHeadNode;
+        n_element = 0;
     }
-    
+    // constructor that initialize a List with n random numbers
     LinkedList(const int & n){
         StartHeadNode = new Node(-1);
         EndHeadNode = new Node(-1);
-
+        n_element = 0;
         StartHeadNode->Next = EndHeadNode;
         EndHeadNode->Prev = StartHeadNode;
         
         for(unsigned int i = 0; i<n;i++){
-            int x = rand() % 100;
+            int x = rand() % 10;
             this->PushBack(x);
         }
-    }
 
-    LinkedList(const int & start, const int & end){
+    }
+    // constructor that initializes a list with n values ​​in the defined range
+    LinkedList(const int & n, const int & range){
         StartHeadNode = new Node(0);
         EndHeadNode = new Node(-1);
-
+        n_element = 0;
         StartHeadNode->Next = EndHeadNode;
         EndHeadNode->Prev = StartHeadNode;
 
-        for(unsigned int i = 0; i<start;i++){
-            int x = rand() % end;
+        for(unsigned int i = 0; i<n;i++){
+            int x = rand() % range;
             this->PushBack(x);
         }
     }
-
+    // delete list
     ~LinkedList(){
         Node * deleted = StartHeadNode->Next;
         while(deleted != EndHeadNode){
