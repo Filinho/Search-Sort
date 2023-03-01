@@ -76,7 +76,11 @@ public:
         node->Next = aux;
     }
 
-
+    void printList(){
+        for(Node * current = StartHeadNode->Next; current != EndHeadNode;current = current->Next){
+            cout<<"Name: " << current->p.Name<< ", Key: "<< current->p.key << endl; 
+        }
+    }
     void bubbleSort(){
         Node * current;
         bool swapped = false;
@@ -105,6 +109,7 @@ public:
         EndHeadNode->Prev = StartHeadNode;
         n_element = 0;
     }
+
     // constructor that initialize a List with n random numbers
     LinkedList(const int & n){
         StartHeadNode = new Node();
