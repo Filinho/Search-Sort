@@ -1,31 +1,26 @@
 #include <iostream>
 #include <cstdlib>
 
-
 using namespace std;
-class Data{
-    string Name;
-    int Id;
-public:
-    Data
-    (/* args */);
-    ~Data
-    ();
-};
 
+typedef struct{
+    string Name;
+    int key;
+} Person;
 class Node{
 public:
-    Data data;
+    Person p;
     Node * Next;
     Node * Prev;
     Node(){
-        Data = 0;
+        p.Name ="Dummy";
+        p.key = 0;
         Next = NULL;
         Prev = NULL;
     };
 
-    Node(Data &  x){
-        data = x;
+    Node(const Person  &  x){
+        p = x;
         Next = NULL;
         Prev = NULL;
     };
@@ -39,7 +34,7 @@ public:
 
     int n_element;
 
-    void PushFront(const Data & data){
+    void PushFront(const Person & data){
 
         Node * newNode = new Node(data);
         Node * oldStart= StartHeadNode->Next;
@@ -51,7 +46,7 @@ public:
         n_element ++;
     }
 
-    void PushBack(const Data & data){
+    void PushBack(const Person & data){
 
         Node * newNode = new Node(data);
         Node * oldEnd= EndHeadNode->Prev;
@@ -95,26 +90,21 @@ public:
     // default constructor, that initialize both headnodes, and a empty List
     LinkedList(){
 
-        StartHeadNode = new Node(0);
-        EndHeadNode = new Node(-1);
+        StartHeadNode = new Node();
+        EndHeadNode = new Node();
 
         StartHeadNode->Next = EndHeadNode;
         EndHeadNode->Prev = StartHeadNode;
         n_element = 0;
     }
     // constructor that initialize a List with n random numbers
-    LinkedList(const Data & n){
-        StartHeadNode = new Node(-1);
-        EndHeadNode = new Node(-1);
+    LinkedList(const person & n){
+        StartHeadNode = new Node();
+        EndHeadNode = new Node();
         n_element = 0;
         StartHeadNode->Next = EndHeadNode;
         EndHeadNode->Prev = StartHeadNode;
         
-        for(unsigned int i = 0; i<n;i++){
-            int x = rand() % 10;
-            this->PushBack(x);
-        }
-
     }
     // constructor that initializes a list with n values ​​in the defined range
     LinkedList(const Data & n, const int & range){
