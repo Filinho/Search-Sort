@@ -1,6 +1,5 @@
-#include <iostream>
+#include "rand.h"
 #include <cstdlib>
-
 using namespace std;
 
 typedef struct{
@@ -104,19 +103,27 @@ public:
         n_element = 0;
         StartHeadNode->Next = EndHeadNode;
         EndHeadNode->Prev = StartHeadNode;
-        
+            for(unsigned int i = 0; i<n;i++){
+            Person x;
+            x.key = rand() % n;
+            x.Name = rand_name((i*x.key)/n);
+            PushBack(x);
+        }
+
     }
     // constructor that initializes a list with n values ​​in the defined range
-    LinkedList(const Data & n, const int & range){
-        StartHeadNode = new Node(0);
-        EndHeadNode = new Node(Data);
+    LinkedList(const int & n, const int & range){
+        StartHeadNode = new Node();
+        EndHeadNode = new Node();
         n_element = 0;
         StartHeadNode->Next = EndHeadNode;
         EndHeadNode->Prev = StartHeadNode;
 
         for(unsigned int i = 0; i<n;i++){
-            int x = rand() % range;
-            this->PushBack(x);
+            Person x;
+            x.key = rand() %range;
+            x.Name = rand_name(i*x.key/range);
+            PushBack(x);
         }
     }
     // delete list
