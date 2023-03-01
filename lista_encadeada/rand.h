@@ -2,7 +2,7 @@
 
 using namespace std;
 string  rand_name(const int & i){
-  int aux = i%29;
+  int aux = i%30;
   string names[30];
   names[0] = "Flavio";
   names[1] = "Jose";
