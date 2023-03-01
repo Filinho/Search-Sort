@@ -1,4 +1,4 @@
-#include <iostream>
+ #include <iostream>
 #define MAX_ELEM 100
 
 using namespace std;
