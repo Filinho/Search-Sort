@@ -75,16 +75,25 @@ public:
         node->Next->Prev = aux;
         node->Next = aux;
     }
-    
-    void BubbleSort(){
-        bool Swap = true;
-        int aux = n_element -1;
-        int n = n_element;
 
-        while(Swap){
-            Swap = false;
+
+    void bubbleSort(){
+        Node * current;
+        bool swapped = false;
+        for(int i = 0; i <n_element;i++){
+            current = StartHeadNode->Next;
+            swapped = false;
+            for(int j = 0; j< n_element-i -1; j++){
+                if(current->p.key>=current->Next->p.key){
+                    SwapBack(current->Next);
+                    swapped = true;
+                }
+                else{
+                    current = current->Next;
+                }
+            }
+            if(swapped == false) break;
         }
-
     }
     // default constructor, that initialize both headnodes, and a empty List
     LinkedList(){
