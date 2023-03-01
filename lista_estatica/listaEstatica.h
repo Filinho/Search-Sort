@@ -69,11 +69,11 @@ public:
     void bubblesort(){
 
         int swapPos = size-1;
-        bool swaped = true;
+        bool swapped = true;
 
-        while(swaped){
+        while(swapped){
 
-            swaped = false;
+            swapped = false;
 
             int n = swapPos;
 
@@ -83,7 +83,7 @@ public:
 
                     swap(j, j+1);
                     swapPos = j;
-                    swaped = true;
+                    swapped = true;
                 }
             }
         }
