@@ -1,6 +1,5 @@
 #include <iostream>
 #include "rand.h"
-#define MAX_ELEM 100
 
 using namespace std;
 
