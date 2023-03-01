@@ -7,9 +7,9 @@ typedef struct{
 
     string name;
     int key;
-}Student;
+}Person;
 
-typedef int DataType;
+typedef Person DataType;
 
 class StaticList{
 public:
@@ -33,18 +33,18 @@ public:
 
         for(int i=0; i<n; ++i){
 
-            list[i] = rand()%n + 1;
+            list[i].key = rand()%n + 1;
         }
     }
 
-    void overwrite_position(const unsigned int pos, const int value){
+    void overwrite_position(const unsigned int pos, const DataType value){
 
         if(pos >= size) return;
 
         list[pos] = value;
     }
 
-    void insert_position(const unsigned int pos, const int value){
+    void insert_position(const unsigned int pos, const DataType value){
 
         if(pos >= size) return;
 
@@ -77,7 +77,7 @@ public:
 
             for(int j=0; j<n; ++j){/*4 7 8 6 4 6 7 3 10 2*/
 
-                if(list[j] > list[j+1]){
+                if(list[j].key > list[j+1].key){
 
                     swap(j, j+1);
                     swapPos = j;
@@ -91,14 +91,15 @@ public:
 
         int left = 0;
         int right = size-1;
+        int targetKey = target.key;
 
         while(left <= right){
 
             int middle = (right+left)/2;
 
-            if(list[middle] == target) return middle;
+            if(list[middle].key == targetKey) return middle;
 
-            else if(list[middle] < target){
+            else if(list[middle].key < targetKey){
 
                 left = middle+1;
             }else{
@@ -114,15 +115,13 @@ public:
 
         for(int i=0; i<size; ++i){
 
-            printf("%d; ", list[i]);
+            cout << "Nome: " << list[i].name << "Key: " << list[i].key << endl;
         }
-
-        printf("\n");
     }
 
     void swap(const unsigned int posA, const unsigned int posB){
 
-        unsigned int aux = list[posA];
+        DataType aux = list[posA];
 
         list[posA] = list[posB];
         list[posB] = aux;
@@ -139,37 +138,3 @@ public:
     }
 
 };
-
-int main(){
-
-    StaticList l1(10);
-
-    l1.push_back(1);
-    l1.print();
-    l1.push_back(21);
-    l1.print();
-    l1.push_back(32);
-    l1.print();
-    l1.push_back(2);
-    l1.print();
-    l1.push_back(4);
-    l1.print();
-    l1.push_back(454);
-    l1.print();
-    l1.push_back(65);
-    l1.print();
-
-    l1.bubblesort();
-
-    l1.print();
-
-    int n = l1.binary_search(29);
-
-    if(n > -1){
-
-        printf("\n%d\n", l1.list[n]);
-    }else{
-
-        printf("\n29 não está na lista\n");
-    }
-}
