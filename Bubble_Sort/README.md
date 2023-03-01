@@ -1,4 +1,5 @@
 # Bubble Sort
+## Buble Sort is a sorting algorithm, which works by traversing the vector n times, and in each of them the largest element is placed at the end of the list until it is completely sorted.
 ![BS](https://user-images.githubusercontent.com/115127639/222279089-4cb68992-399b-4465-8aa0-75ced43a20a3.png)
 
 # Static List
