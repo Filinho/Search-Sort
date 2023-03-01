@@ -98,7 +98,7 @@ public:
         n_element = 0;
     }
     // constructor that initialize a List with n random numbers
-    LinkedList(const person & n){
+    LinkedList(const int & n){
         StartHeadNode = new Node();
         EndHeadNode = new Node();
         n_element = 0;
