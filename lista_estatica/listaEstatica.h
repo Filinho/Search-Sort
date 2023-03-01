@@ -1,4 +1,5 @@
 #include <iostream>
+#include "rand.h"
 #define MAX_ELEM 100
 
 using namespace std;
@@ -22,18 +23,19 @@ public:
 
         list = new DataType[sz];
         maxSize = sz;
-        size = 0;
-    }
+        size = sz;
 
-    StaticList(const int sz, const int n){
-        
-        list = new DataType[sz];
-        maxSize = sz;
-        size = n;
+        for(int i=0; i<sz; ++i){
 
-        for(int i=0; i<n; ++i){
+            list[i].key = i;
+        }
 
-            list[i].key = rand()%n + 1;
+        int elem1, elem2;
+        for(int i=0; i<sz; ++i){
+
+            elem1 = rand()%sz;
+            elem2 = rand()%sz;
+            swap(elem1, elem2);
         }
     }
 

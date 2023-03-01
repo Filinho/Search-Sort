@@ -2,7 +2,7 @@
 
 int main(){
 
-    StaticList l1(10000, 10);
+    StaticList l1(10);
 
     l1.bubblesort();
 
