@@ -3,10 +3,19 @@
 
 
 using namespace std;
+class Data{
+    string Name;
+    int Id;
+public:
+    Data
+    (/* args */);
+    ~Data
+    ();
+};
 
 class Node{
 public:
-    int Data;
+    Data data;
     Node * Next;
     Node * Prev;
     Node(){
@@ -15,8 +24,8 @@ public:
         Prev = NULL;
     };
 
-    Node(int x){
-        Data = x;
+    Node(Data &  x){
+        data = x;
         Next = NULL;
         Prev = NULL;
     };
@@ -30,7 +39,7 @@ public:
 
     int n_element;
 
-    void PushFront(const int & data){
+    void PushFront(const Data & data){
 
         Node * newNode = new Node(data);
         Node * oldStart= StartHeadNode->Next;
@@ -42,7 +51,7 @@ public:
         n_element ++;
     }
 
-    void PushBack(const int & data){
+    void PushBack(const Data & data){
 
         Node * newNode = new Node(data);
         Node * oldEnd= EndHeadNode->Prev;
@@ -94,7 +103,7 @@ public:
         n_element = 0;
     }
     // constructor that initialize a List with n random numbers
-    LinkedList(const int & n){
+    LinkedList(const Data & n){
         StartHeadNode = new Node(-1);
         EndHeadNode = new Node(-1);
         n_element = 0;
@@ -108,9 +117,9 @@ public:
 
     }
     // constructor that initializes a list with n values ​​in the defined range
-    LinkedList(const int & n, const int & range){
+    LinkedList(const Data & n, const int & range){
         StartHeadNode = new Node(0);
-        EndHeadNode = new Node(-1);
+        EndHeadNode = new Node(Data);
         n_element = 0;
         StartHeadNode->Next = EndHeadNode;
         EndHeadNode->Prev = StartHeadNode;
