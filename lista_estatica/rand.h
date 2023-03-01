@@ -1,9 +1,8 @@
+#include <iostream>
 
-string rand_name(const int & i){
-  int aux = i;
-  if(i > 30 ){
-    aux = i%30;
-  }
+using namespace std;
+string  rand_name(const int & i){
+  int aux = i%29;
   string names[30];
   names[0] = "Flavio";
   names[1] = "Jose";
