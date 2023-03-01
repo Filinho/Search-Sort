@@ -83,9 +83,9 @@ public:
         for(int i = 0; i <n_element;i++){
             current = StartHeadNode->Next;
             swapped = false;
-            for(int j = 0; j< n_element-i -1; j++){
+            for(int j = 0; j< n_element -i -1; j++){
                 if(current->p.key>=current->Next->p.key){
-                    SwapBack(current->Next);
+                    SwapFront(current);
                     swapped = true;
                 }
                 else{
