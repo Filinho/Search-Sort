@@ -89,7 +89,7 @@ public:
         for(int i = 0; i <n_element;i++){ 
             current = StartHeadNode->Next; // set current as the first valid node of the list
             swapped = false; // set swapped false
-        /*eache time this for is traversdes, the current node is comparede with the next node*/
+        /*each time this for is traversdes, the current node is comparede with the next node*/
             for(int j = 0; j< n_element -i -1; j++){
                 /*compare if the key of current is bigger than next node key, if it is, current is swapped if next, and swapped become true*/
                 if(current->p.key>=current->Next->p.key){ 
