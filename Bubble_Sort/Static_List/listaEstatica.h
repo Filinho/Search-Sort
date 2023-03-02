@@ -1,5 +1,6 @@
 #include <iostream>
 #include "rand.h"
+#
 
 using namespace std;
 
@@ -14,14 +15,13 @@ typedef Person DataType;
 class StaticList{
 public:
 
-    DataType* list;
+    static constexpr unsigned int MAX = 1000;
+
+    DataType list[MAX];
     unsigned int size;
-    unsigned int maxSize;
 
     StaticList(const int sz){
 
-        list = new DataType[sz];
-        maxSize = sz;
         size = sz;
 
         for(int i=0; i<sz; ++i){
@@ -60,7 +60,7 @@ public:
 
     void push_back(const DataType x){
 
-        if(size == maxSize) return;
+        if(size == MAX) return;
 
         list[size++] = x; 
     }
@@ -76,7 +76,7 @@ public:
 
             int n = swapPos;
 
-            for(int j=0; j<n; ++j){/*4 7 8 6 4 6 7 3 10 2*/
+            for(int j=0; j<n; ++j){
 
                 if(list[j].key > list[j+1].key){
 
