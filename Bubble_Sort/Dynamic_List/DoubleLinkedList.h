@@ -78,24 +78,30 @@ public:
 
     void printList(){
         for(Node * current = StartHeadNode->Next; current != EndHeadNode;current = current->Next){
-            cout<<"Name: " << current->p.Name<< ", Key: "<< current->p.key << endl; 
+            cout<<"("<< current->p.key<<")"<<"Name: " << current->p.Name << endl; 
         }
     }
     void bubbleSort(){
         Node * current;
-        bool swapped = false;
-        for(int i = 0; i <n_element;i++){
-            current = StartHeadNode->Next;
-            swapped = false;
+        bool swapped = false; // boolean variable that informs if an swap happened
+
+        /* each time times this for is traversed, the biggest key in the first n-i elements, is placed at the end of the list*/
+        for(int i = 0; i <n_element;i++){ 
+            current = StartHeadNode->Next; // set current as the first valid node of the list
+            swapped = false; // set swapped false
+        /*eache time this for is traversdes, the current node is comparede with the next node*/
             for(int j = 0; j< n_element -i -1; j++){
-                if(current->p.key>=current->Next->p.key){
+                /*compare if the key of current is bigger than next node key, if it is, current is swapped if next, and swapped become true*/
+                if(current->p.key>=current->Next->p.key){ 
                     SwapFront(current);
                     swapped = true;
                 }
+                /*if the compared arguments is already ordered, the current node become the next node*/
                 else{
                     current = current->Next;
                 }
             }
+            /*if all the list is traversed, and there is no swap, it means that the list is already ordered*/
             if(swapped == false) break;
         }
     }
