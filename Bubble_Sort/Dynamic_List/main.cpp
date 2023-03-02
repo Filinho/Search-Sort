@@ -4,18 +4,17 @@ int main(){
 
     using namespace std::chrono;
     using namespace std::chrono;
-    steady_clock::time_point t1 = steady_clock::now();
+    
 
-    LinkedList * l = new LinkedList(1000);
+    LinkedList * l = new LinkedList(10);
     l->printList();
     cout << endl;
+    steady_clock::time_point t1 = steady_clock::now();
     l->bubbleSort();
+    steady_clock::time_point t2 = steady_clock::now();
     l->printList();
     delete(l);
-
-    steady_clock::time_point t2 = steady_clock::now();
-
     duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
 
-    cout << time_span.count();
+    cout <<endl << "Timer = "<< time_span.count()<<endl;
 }
