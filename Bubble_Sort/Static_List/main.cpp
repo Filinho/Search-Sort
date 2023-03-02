@@ -1,21 +1,42 @@
 #include "listaEstatica.h"
 #include <chrono>
 
-int main(){
-
+void timerBubble(StaticList &l, bool print){
     using namespace std::chrono;
     using namespace std::chrono;
     steady_clock::time_point t1 = steady_clock::now();
-    
-    StaticList l1(1000);
-
-    l1.bubblesort();
-
-    l1.print();
-
+    l.bubblesort(print);
     steady_clock::time_point t2 = steady_clock::now();
+    cout<< duration_cast<nanoseconds>(t2 - t1).count() <<endl;
+}
 
-    duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
+int main(){
 
-    cout << time_span.count();
+    using namespace std::chrono;
+    
+    StaticList* l1;
+    int menu;
+    scanf("%d", &menu);
+
+    switch(menu){
+        case 1:
+
+            int val;
+            l1 = new StaticList;
+
+            while(scanf("%d", &val) > 0){
+                l1->push_back(DataType{rand_name(), val});
+            }
+
+            timerBubble(*l1, true);
+            delete(l1);
+            break;
+        case 2:
+
+            for(int i=0; i<1000; ++i){
+                l1 = new StaticList(i);
+                timerBubble(*l1, false);
+                delete(l1);
+            }
+    }
 }

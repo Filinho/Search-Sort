@@ -18,7 +18,7 @@ int main(){
             int x;
             l = new LinkedList;
             while(scanf("%d",&x) > 0){
-                l->PushBack(Person{rand_name(x%29),x});
+                l->PushBack(Person{rand_name(x%30),x});
             }
             l->printList();
             cout<<endl;

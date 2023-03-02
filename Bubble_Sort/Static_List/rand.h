@@ -1,8 +1,8 @@
 #include <iostream>
 
 using namespace std;
-string  rand_name(const int & i){
-  int aux = i%30;
+string  rand_name(){
+
   string names[30];
   names[0] = "Flavio";
   names[1] = "Jose";
@@ -35,5 +35,5 @@ string  rand_name(const int & i){
   names[28] = "Gandalfo";
   names[29] = "Bilbo";
 
-  return names[aux];
+  return names[rand()%30];
 }

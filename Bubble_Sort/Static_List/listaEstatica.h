@@ -19,6 +19,11 @@ public:
     DataType list[MAX];
     unsigned int size;
 
+    StaticList(){
+
+        size = 0;
+    }
+
     StaticList(const int sz){
 
         size = sz;
@@ -26,6 +31,7 @@ public:
         for(int i=0; i<sz; ++i){
 
             list[i].key = i;
+            list[i].name = rand_name();
         }
 
         int elem1, elem2;
@@ -64,10 +70,15 @@ public:
         list[size++] = x; 
     }
 
-    void bubblesort(){
+    void bubblesort(const bool print){
 
         int swapPos = size-1;
         bool swapped = true;
+
+        if(print){
+            this->print();
+            cout << endl;
+        }
 
         while(swapped){
 
@@ -83,6 +94,11 @@ public:
                     swapPos = j;
                     swapped = true;
                 }
+            }
+
+            if(print){
+                this->print();
+                cout << endl;
             }
         }
     }
@@ -115,7 +131,7 @@ public:
 
         for(int i=0; i<size; ++i){
 
-            cout << "Nome: " << list[i].name << "Key: " << list[i].key << endl;
+            cout << "(" << list[i].key << ")-Nome: " << list[i].name << endl;
         }
     }
 
