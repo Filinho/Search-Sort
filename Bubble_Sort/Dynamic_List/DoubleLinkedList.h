@@ -1,5 +1,6 @@
 #include "rand.h"
 #include <cstdlib>
+#include <chrono>
 using namespace std;
 
 typedef struct{
@@ -33,8 +34,35 @@ public:
 
     int n_element;
 
-    void PushFront(const Person & data){
+    // default constructor, that initialize both headnodes, and a empty List
+    LinkedList(){
 
+        StartHeadNode = new Node();
+        EndHeadNode = new Node();
+
+        StartHeadNode->Next = EndHeadNode;
+        EndHeadNode->Prev = StartHeadNode;
+        n_element = 0;
+    }
+    // constructor that initialize a List with n random numbers
+    LinkedList(const int & n){
+        StartHeadNode = new Node();
+        EndHeadNode = new Node();
+        n_element = 0;
+        StartHeadNode->Next = EndHeadNode;
+        EndHeadNode->Prev = StartHeadNode;
+        if(n<=1000){
+            for(unsigned int i = 0; i<n;i++){
+            Person x;
+            x.key = rand() % n;
+            x.Name = rand_name((i*x.key)/n);
+            PushBack(x);
+        }
+        }
+    }
+
+    void PushFront(const Person & data){
+        if(n_element ==1000) return;
         Node * newNode = new Node(data);
         Node * oldStart= StartHeadNode->Next;
 
@@ -46,7 +74,7 @@ public:
     }
 
     void PushBack(const Person & data){
-
+        if(n_element ==1000) return;
         Node * newNode = new Node(data);
         Node * oldEnd= EndHeadNode->Prev;
 
@@ -77,10 +105,16 @@ public:
     }
 
     void printList(){
-        for(Node * current = StartHeadNode->Next; current != EndHeadNode;current = current->Next){
-            cout<<"("<< current->p.key<<")"<<"Name: " << current->p.Name << endl; 
+
+        cout << "List=" <<"{" << endl;
+        if(EndHeadNode->Prev != StartHeadNode){
+            for(Node * current = StartHeadNode->Next; current != EndHeadNode;current = current->Next){
+            cout<<"["<< current->p.key<<"]"<<"Name: " << current->p.Name << endl; 
         }
+        }
+        cout << "};";
     }
+
     void bubbleSort(){
         Node * current;
         bool swapped = false; // boolean variable that informs if an swap happened
@@ -105,48 +139,7 @@ public:
             if(swapped == false) break;
         }
     }
-    // default constructor, that initialize both headnodes, and a empty List
-    LinkedList(){
-
-        StartHeadNode = new Node();
-        EndHeadNode = new Node();
-
-        StartHeadNode->Next = EndHeadNode;
-        EndHeadNode->Prev = StartHeadNode;
-        n_element = 0;
-    }
-
-    // constructor that initialize a List with n random numbers
-    LinkedList(const int & n){
-        StartHeadNode = new Node();
-        EndHeadNode = new Node();
-        n_element = 0;
-        StartHeadNode->Next = EndHeadNode;
-        EndHeadNode->Prev = StartHeadNode;
-            for(unsigned int i = 0; i<n;i++){
-            Person x;
-            x.key = rand() % n;
-            x.Name = rand_name((i*x.key)/n);
-            PushBack(x);
-        }
-
-    }
-    // constructor that initializes a list with n values ​​in the defined range
-    LinkedList(const int & n, const int & range){
-        StartHeadNode = new Node();
-        EndHeadNode = new Node();
-        n_element = 0;
-        StartHeadNode->Next = EndHeadNode;
-        EndHeadNode->Prev = StartHeadNode;
-
-        for(unsigned int i = 0; i<n;i++){
-            Person x;
-            x.key = rand() % n;
-            x.Name = rand_name(i*x.key/range);
-            PushBack(x);
-        }   
-    }
-    // delete list
+// delete list
     ~LinkedList(){
         Node * deleted = StartHeadNode->Next;
         while(deleted != EndHeadNode){

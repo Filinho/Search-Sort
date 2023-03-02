@@ -3,8 +3,8 @@
 int main(){
     LinkedList * l = new LinkedList(1000);
     l->printList();
-    l->bubbleSort();
     cout << endl;
+    l->bubbleSort();
     l->printList();
     delete(l);
 }
