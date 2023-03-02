@@ -62,6 +62,7 @@ public:
     }
 
     void PushFront(const Person & data){
+        if(n_element == 1000) return;
         Node * newNode = new Node(data);
         Node * oldStart= StartHeadNode->Next;
 
@@ -73,6 +74,7 @@ public:
     }
 
     void PushBack(const Person & data){
+        if(n_element == 1000) return;
         Node * newNode = new Node(data);
         Node * oldEnd= EndHeadNode->Prev;
 
