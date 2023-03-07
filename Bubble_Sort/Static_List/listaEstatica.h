@@ -19,21 +19,25 @@ public:
     DataType list[MAX];
     unsigned int size;
 
+    /*initizalize an empty list.*/
     StaticList(){
 
         size = 0;
     }
 
+    /*initialize an list with sz unique elements in a random order.*/
     StaticList(const int sz){
 
         size = sz;
 
+        /*First we add the elements sequencially.*/
         for(int i=0; i<sz; ++i){
 
             list[i].key = i;
             list[i].name = rand_name();
         }
 
+        /*A permutation of the elements occurs to randomize the positions.*/
         int elem1, elem2;
         for(int i=0; i<sz; ++i){
 
@@ -43,6 +47,7 @@ public:
         }
     }
 
+    /*insert the value on position pos overwriting the element in pos.*/
     void overwrite_position(const unsigned int pos, const DataType value){
 
         if(pos >= size) return;
@@ -50,10 +55,12 @@ public:
         list[pos] = value;
     }
 
+    /*insert value on position pos moving the element in pos one index foward.*/
     void insert_position(const unsigned int pos, const DataType value){
 
         if(pos >= size) return;
-
+        
+        /*the loop starts at the end of the list moving all the elements one index foward opening the index pos to element value.*/
         for(int i=size; i>pos; --i){
 
             list[i] = list[i-1];
@@ -63,6 +70,7 @@ public:
         size++;
     }
 
+    /*insert x in the end of the list.*/
     void push_back(const DataType x){
 
         if(size == MAX) return;
@@ -70,29 +78,30 @@ public:
         list[size++] = x; 
     }
 
+    /*sort a list. If print is true prints the state of the list between the iterations.*/
     void bubblesort(const bool print){
 
+        /*Swap pos indicates where the last position where a swap occurred.*/
         int swapPos = size-1;
-        bool swapped = true;
 
         if(print){
             this->print();
             cout << endl;
         }
 
-        while(swapped){
+        /*If swapPos <= 0 it means the list is sorted because no swap happened.*/
+        while(swapPos > 0){
 
-            swapped = false;
-
+            /*n is the number of times the second loop runs. From where the last swap took place the list is sorted,that is, it is not necessary to check the elements already sorted.*/
             int n = swapPos;
+            swapPos = 0;
 
             for(int j=0; j<n; ++j){
-
+                /*The current element is compared with the next and if it is bigger they swap positions. This means that the bigger element its at the end of the list on the end of this loop.*/
                 if(list[j].key > list[j+1].key){
 
                     swap(j, j+1);
                     swapPos = j;
-                    swapped = true;
                 }
             }
 
@@ -102,7 +111,7 @@ public:
             }
         }
     }
-
+/*
     int binary_search(const DataType target){
 
         int left = 0;
@@ -126,7 +135,9 @@ public:
 
         return -1;
     }
+*/
 
+    //print the elements of a list.
     void print(){
 
         for(int i=0; i<size; ++i){
@@ -135,6 +146,7 @@ public:
         }
     }
 
+    /*swap the element on index posA with the element on index posB*/
     void swap(const unsigned int posA, const unsigned int posB){
 
         DataType aux = list[posA];
@@ -143,13 +155,13 @@ public:
         list[posB] = aux;
     }
 
+    /*delete the element at index pos*/
     void delete_position(const unsigned int pos){
 
+        /*the loop starts on index pos moving the elements one index back and overwriting the element at pos*/
         for(int i=pos; i<size; ++i){
-
             list[i] = list[i+1];
         }
-
         size--;
     }
 
