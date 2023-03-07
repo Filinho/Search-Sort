@@ -6,8 +6,7 @@ void timerBubble(LinkedList &l){
     steady_clock::time_point t1 = steady_clock::now();
     l.bubbleSort();
     steady_clock::time_point t2 = steady_clock::now();
-    duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
-    cout<< time_span.count()<<endl;
+    cout<< duration_cast<nanoseconds>(t2-t1).count() <<endl;
 }
 int main(){
     int menu;
