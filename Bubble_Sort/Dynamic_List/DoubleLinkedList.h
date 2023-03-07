@@ -55,7 +55,7 @@ public:
             for(unsigned int i = 0; i<n;i++){
             Person x;
             x.key = rand() % n;
-            x.Name = rand_name((i*x.key)/n);
+            x.Name = rand_name();
             PushBack(x);
         }
         }
