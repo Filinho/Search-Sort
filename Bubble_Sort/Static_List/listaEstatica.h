@@ -80,18 +80,14 @@ public:
 
     /*sort a list. If print is true prints the state of the list between the iterations.*/
     void bubblesort(const bool print){
-
         /*Swap pos indicates where the last position where a swap occurred.*/
         int swapPos = size-1;
-
         if(print){
             this->print();
             cout << endl;
         }
-
         /*If swapPos <= 0 it means the list is sorted because no swap happened.*/
         while(swapPos > 0){
-
             /*n is the number of times the second loop runs. From where the last swap took place the list is sorted,that is, it is not necessary to check the elements already sorted.*/
             int n = swapPos;
             swapPos = 0;
@@ -104,7 +100,6 @@ public:
                     swapPos = j;
                 }
             }
-
             if(print){
                 this->print();
                 cout << endl;
