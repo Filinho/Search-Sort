@@ -1,10 +1,10 @@
 #include "DoubleLinkedList.h"
 
-void timerBubble(LinkedList &l){
+void timerBubble(LinkedList &l, bool print){
     using namespace std::chrono;
     using namespace std::chrono;
     steady_clock::time_point t1 = steady_clock::now();
-    l.bubbleSort();
+    l.bubbleSort(print);
     steady_clock::time_point t2 = steady_clock::now();
     cout<< duration_cast<nanoseconds>(t2-t1).count() <<endl;
 }
@@ -21,7 +21,7 @@ int main(){
             }
             l->printList();
             cout<<endl;
-            timerBubble(*l);
+            timerBubble(*l,true);
             l->printList();
             delete(l);
         }break;
@@ -30,7 +30,7 @@ int main(){
             scanf("%d",&tamanho);
             for(int i=0;i<tamanho;i++){
                 l = new LinkedList(i);
-                timerBubble(*l);
+                timerBubble(*l,false);
                 delete(l);   
             }
         }break;

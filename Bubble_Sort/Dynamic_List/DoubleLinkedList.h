@@ -115,7 +115,7 @@ public:
         cout << "};";
     }
 
-    void bubbleSort(){
+    void bubbleSort(bool print){
         Node * current;
         // the id of the last position where a swap occurred
         int swap_position = n_element -1;
@@ -132,6 +132,7 @@ public:
                 if(current->p.key>=current->Next->p.key){ 
                     SwapFront(current);
                     swap_position = j;
+                    if(print == true) printList();
                 }
                 /*if the compared arguments is already ordered, the current node become the next node*/
                 else{
