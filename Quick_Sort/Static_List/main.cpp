@@ -41,6 +41,7 @@ int main(){
             scanf("%d", &n);
             for(int i=0; i<n; ++i){
                 l1 = new StaticList(i);
+                l1->print(-1);
                 timerBubble(*l1, false);
                 delete(l1);
             }
