@@ -136,7 +136,7 @@ public:
         privateQuickSort(0,size-1,print);
     }
     private: 
-    int partition(int left,int right){
+    int partition(int left,int right, bool print){
         int pivot = list[right].key;
         int center = left;
         for( int i = left; i < right; i++){
@@ -147,9 +147,12 @@ public:
             
         }
         swap(center, right);
+        
+        if (print) {
         cout << endl ;
         this->print(center);
         cout << endl ;
+        }
         return center;
     }
         /*sort a list. If print is true prints the state of the list between the iterations.*/
@@ -159,8 +162,8 @@ public:
                 this->print(-1);
                 cout << endl;
             }
-        if(left < right){
-            int center = partition(left, right);
+        if(left <= right){
+            int center = partition(left, right, print);
             privateQuickSort(left, center-1, print);
             privateQuickSort(center+1, right, print);
         }
