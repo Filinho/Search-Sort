@@ -162,7 +162,7 @@ public:
                 this->print(-1);
                 cout << endl;
             }
-        if(left <= right){
+        if(left < right){
             int center = partition(left, right, print);
             privateQuickSort(left, center-1, print);
             privateQuickSort(center+1, right, print);
