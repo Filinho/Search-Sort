@@ -137,40 +137,36 @@ public:
     }
     private: 
     int partition(int left,int right, bool print){
-        int pivot = list[right].key;
-        int center = left;
+        int pivot = list[right].key; // set the pivot element as the elemet in index right
+        int center = left; // initialize the center as the index of the left element
         for( int i = left; i < right; i++){
+            /*if the pivot key is bigger than the key of the element in index i, the element in center most be swapped with the element in i, and the index center most be incremented*/ 
             if(list[i].key < pivot){
                 swap(center,i);
                 center++;   
             }
             
         }
+        /*after all interactios of the for, the variable center, will points exactly for the index where pivot is the center of the list, that means that, any element after center, is bigger thant the pivot, and any element before center, is smaller thant the center. with the index center, we swapp the center element with the right element*/
         swap(center, right);
-        
+
         if (print) {
         cout << endl ;
         this->print(center);
+
         cout << endl ;
         }
+        
         return center;
     }
         /*sort a list. If print is true prints the state of the list between the iterations.*/
     void privateQuickSort(int left, int right, bool print){
-        /*Swap pos indicates where the last position where a swap occurred.*/
-        if(print){
-                this->print(-1);
-                cout << endl;
-            }
+
         if(left < right){
-            int center = partition(left, right, print);
-            privateQuickSort(left, center-1, print);
-            privateQuickSort(center+1, right, print);
+            int center = partition(left, right, print);// function that define the center
+            privateQuickSort(left, center-1, print); // recursive call for the left of center
+            privateQuickSort(center+1, right, print); // recursive call for the right of center
         }
-            if(print){
-                this->print(-1);
-                cout << endl;
-            }
-        }
-    
+
+    }  
 };

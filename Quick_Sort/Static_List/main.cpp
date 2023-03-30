@@ -32,7 +32,7 @@ int main(){
                 l1->push_back(DataType{rand_name(), val});
             }
             l1->print(-1);
-            timerBubble(*l1, false);
+            timerBubble(*l1, true);
             l1->print(-1);
             delete(l1);
             break;
