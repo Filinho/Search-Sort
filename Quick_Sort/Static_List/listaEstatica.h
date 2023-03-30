@@ -1,6 +1,7 @@
 #include <iostream>
 #include "rand.h"
 
+
 using namespace std;
 
 typedef struct{
@@ -17,7 +18,7 @@ public:
 
     DataType list[MAX];
     unsigned int size;
-
+    int access;
     /*initizalize an empty list.*/
     StaticList(){
 
@@ -26,7 +27,7 @@ public:
 
     /*initialize an list with sz unique elements in a random order.*/
     StaticList(const int sz){
-
+        access = 0;
         size = sz;
 
         /*First we add the elements sequencially.*/
@@ -120,6 +121,7 @@ public:
 
         list[posA] = list[posB];
         list[posB] = aux;
+        access += 4; // swap foi considerado um peso de 4 acessos a memória
     }
 
     /*delete the element at index pos*/
@@ -137,15 +139,19 @@ public:
     private: 
     int partition(int left,int right, bool print){
         int pivot = list[right].key; // set the pivot element as the elemet in index right
+        access ++; // acesso para setar a variável pivo
         int center = left; // initialize the center as the index of the left element
         for( int i = left; i < right; i++){
             /*if the pivot key is bigger than the key of the element in index i, the element in center most be swapped with the element in i, and the index center most be incremented*/ 
-            if(list[i].key < pivot){
-                swap(center,i);
-                center++;   
-            }
             
+            if(list[i].key < pivot){
+                
+                swap(center,i);
+                center++; 
+            }
+            access++; // acesso para cada interação do i
         }
+        
         /*after all interactios of the for, the variable center, will points exactly for the index where pivot is the center of the list, that means that, any element after center, is bigger thant the pivot, and any element before center, is smaller thant the center. with the index center, we swapp the center element with the right element*/
         swap(center, right);
 

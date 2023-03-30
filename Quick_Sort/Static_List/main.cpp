@@ -2,13 +2,16 @@
 #include <chrono>
 
 /* Executa e computa o tempo de execução do bubblesort na lista l. Caso print seja true, printa o estado da lista a cada iteração, caso print seja false apenas printa o tempo de execução do bubblesort.*/
-void timerBubble(StaticList &l, bool print){
+void timer(StaticList &l, bool print, bool timer){
     using namespace std::chrono;
     using namespace std::chrono;
     steady_clock::time_point t1 = steady_clock::now();
     l.quickSort(print);
     steady_clock::time_point t2 = steady_clock::now();
-    cout<< duration_cast<nanoseconds>(t2 - t1).count() <<endl;
+    if(timer) {
+    cout<< duration_cast<nanoseconds>(t2 - t1).count()<<" ";
+    cout << l.access << endl;
+    }
 }
 
 int main(){
@@ -32,16 +35,17 @@ int main(){
                 l1->push_back(DataType{rand_name(), val});
             }
             l1->print(-1);
-            timerBubble(*l1, true);
+            timer(*l1, true, false);
             l1->print(-1);
             delete(l1);
             break;
         case 2:
             int n;
             scanf("%d", &n);
+            cout<< "tempo n_acesso"<<endl;
             for(int i=0; i<n; ++i){
                 l1 = new StaticList(i);
-                timerBubble(*l1, false);
+                timer(*l1, false, true);
                 delete(l1);
             }
     }
