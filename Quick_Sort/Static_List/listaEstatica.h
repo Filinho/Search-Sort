@@ -157,6 +157,10 @@ public:
 
         if (print) {
         cout << endl ;
+        int gd = DETECT, gm;
+        initgraph(&gd, &gm, "C:\\TC\\BGI");
+   
+        setcolor(BLUE);
         this->print(center);
 
         cout << endl ;
