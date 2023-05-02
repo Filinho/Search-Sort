@@ -97,10 +97,10 @@ public:
         int m= (size-1)/2;
         if(print) this->print(-100);
         for(int i = m; i >=0; i--){
-            cout << "b = ";
+            if(print) cout << "b = ";
             if(print) this->print(i);
             heapfy(i);
-            cout << "a = ";
+            if(print) cout << "a = ";
             if(print){
                 this->print(i);
                 cout << endl;
@@ -109,6 +109,7 @@ public:
     }
 
     void heapSort(bool print){
+
         creatHeap(print);
         int aux = size; 
         for(int i = aux-1; i>0 ;i--){
