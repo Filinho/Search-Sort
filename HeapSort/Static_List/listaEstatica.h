@@ -84,12 +84,11 @@ public:
         int r = (2*i) + 2;
         int max = i;
          
-        if(size >= l && list[l].key > list[max].key) max = l;
-        if(size >= r && list[r].key > list[max].key) max = r;
+        if(size > l && list[l].key > list[max].key) max = l;
+        if(size > r && list[r].key > list[max].key) max = r;
         
         if(max != i){
             swap(i,max);
-
             heapfy(max);
         }
     }
@@ -102,22 +101,23 @@ public:
             if(print) this->print(i);
             heapfy(i);
             cout << "a = ";
-            if(print) this->print(i);
+            if(print){
+                this->print(i);
+                cout << endl;
+            }
         }
     }
 
     void heapSort(bool print){
         creatHeap(print);
         int aux = size; 
-        for(int i = aux; i>=1 ;i--){
-            size--;
+        for(int i = aux-1; i>0 ;i--){
             swap(0,i);
+            size--;
             heapfy(0);
         }
         size = aux;
     }
-
-
 
     //print the elements of a list.
     void print(int x){

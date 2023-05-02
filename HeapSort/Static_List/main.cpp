@@ -2,7 +2,7 @@
 #include <chrono>
 
 /* Executa e computa o tempo de execução do bubblesort na lista l. Caso print seja true, printa o estado da lista a cada iteração, caso print seja false apenas printa o tempo de execução do bubblesort.*/
-void timerBubble(StaticList &l, bool print){
+void timer(StaticList &l, bool print){
     using namespace std::chrono;
     using namespace std::chrono;
     steady_clock::time_point t1 = steady_clock::now();
@@ -31,8 +31,7 @@ int main(){
             while(scanf("%d", &val) > 0){
                 l1->push_back(DataType{rand_name(), val});
             }
-            l1->print(-100);
-            timerBubble(*l1, true);
+            timer(*l1, true);
             l1->print(-100);
             delete(l1);
             break;
@@ -41,7 +40,7 @@ int main(){
             scanf("%d", &n);
             for(int i=0; i<n; ++i){
                 l1 = new StaticList(i);
-                timerBubble(*l1, false);
+                timer(*l1, false);
                 delete(l1);
             }
     }
