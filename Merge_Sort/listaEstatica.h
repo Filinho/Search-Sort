@@ -17,7 +17,7 @@ public:
 
     DataType list[MAX];
     unsigned int size;
-    int access;
+
     /*initizalize an empty list.*/
     StaticList(){
 
@@ -26,7 +26,6 @@ public:
 
     /*initialize an list with sz unique elements in a random order.*/
     StaticList(const int sz){
-        access = 0;
         size = sz;
 
         /*First we add the elements sequencially.*/
@@ -100,7 +99,6 @@ public:
 
         list[posA] = list[posB];
         list[posB] = aux;
-        access += 4; // swap foi considerado um peso de 4 acessos a memória
     }
 
     /*delete the element at index pos*/
@@ -113,10 +111,10 @@ public:
         size--;
     }
 
-    void mergesort(){
+    void mergesort(bool print){
 
         StaticList auxL(*this);
-        rec_mergesort(0, size, &auxL);
+        rec_mergesort(0, size, &auxL, print);
     }
 
 private:
@@ -138,19 +136,23 @@ private:
         }
     }
 
-    void rec_mergesort(const int left, const int right, StaticList* auxL){
+    void rec_mergesort(const int left, const int right, StaticList* auxL, bool prt){
 
         if(left < right-1){
             int mid = (left+right)/2;
-            auxL->rec_mergesort(left, mid, this);
-            auxL->rec_mergesort(mid, right, this);
-            cout << endl;
-            print(left, right-1, 'r', mid);
+            auxL->rec_mergesort(left, mid, this, prt);
+            auxL->rec_mergesort(mid, right, this, prt);
+            if(prt){
+                cout << endl;
+                auxL->print(left, right-1, 'r', mid);
+            }
             auxL->merge(left, mid, right, this);
 
-            cout << endl;
-            print(left, right-1, 'b', -1);
-            cout<< "\n";
+            if(prt){
+                cout << endl;
+                print(left, right-1, 'b', -1);
+                cout<< endl;
+            }
         }
     }
 };
