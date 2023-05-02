@@ -78,12 +78,19 @@ public:
     }
 
     //print the elements of a list.
-    void print(int c){
-
+    void print(int l, int r, char color, int mid){
+        int cl;
+        if(color == 'b') cl = 34;
+        else if(color == 'r') cl = 31; 
         for(int i=0; i<size; ++i){
-            if(i == c && c != -1) cout << "center : ";
-            cout << "(" << list[i].key << ")-Nome: " << list[i].name << endl;
+            
+            if(i==l) cout << "\e[" << cl << ";10m";
+            if(mid == i) cout << "|";
+            else cout << " ";
+            cout << list[i].key;
+            if(i==r) cout << "\e[m";
         }
+        cout << "\n";
     }
 
     /*swap the element on index posA with the element on index posB*/
@@ -108,17 +115,42 @@ public:
 
     void mergesort(){
 
+        StaticList auxL(*this);
+        rec_mergesort(0, size, &auxL);
     }
 
 private:
 
-    void merge(const int l, const int m, const int r, StaticList auxL){
+    void merge(const int left, const int mid, const int right, StaticList* auxL){
 
+        int leftAux = left;
+        int midAux = mid;
+        
+        for(int i=left; i<right; ++i){
 
+            if(leftAux<mid && (!(midAux<right) || list[leftAux].key<list[midAux].key)){
+
+                auxL->overwrite_position(i, list[leftAux++]);
+            }else{
+
+                auxL->overwrite_position(i, list[midAux++]);
+            }
+        }
     }
 
-    void rec_mergesort(const int left, const int right, StaticList auxL){
+    void rec_mergesort(const int left, const int right, StaticList* auxL){
 
+        if(left < right-1){
+            int mid = (left+right)/2;
+            auxL->rec_mergesort(left, mid, this);
+            auxL->rec_mergesort(mid, right, this);
+            cout << endl;
+            print(left, right-1, 'r', mid);
+            auxL->merge(left, mid, right, this);
 
+            cout << endl;
+            print(left, right-1, 'b', -1);
+            cout<< "\n";
+        }
     }
 };
