@@ -38,7 +38,7 @@ int main(){
         case 2:
             int n;
             scanf("%d", &n);
-            for(int i=0; i<n; ++i){
+            for(int i=i; i<n; ++i){
                 l1 = new StaticList(i);
                 timer(*l1, false);
                 delete(l1);
