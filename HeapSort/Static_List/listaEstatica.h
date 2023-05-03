@@ -94,7 +94,7 @@ public:
     }
 
     void creatHeap(bool print){
-        int m= (size-1)/2;
+        int m=  ((int)size-1)/2;
         if(print) this->print(-100);
         for(int i = m; i >=0; i--){
             if(print) cout << "b = ";
@@ -132,15 +132,6 @@ public:
         cout <<endl;
     }
 
-    void printListasTree(){
-        int m = (size-1)/2;
-        for(int i = 0; i <= m ; i++){
-            for(int j = m; j > i; j--){
-                cout << " ";
-            }
-            cout << list[0].key<< endl;
-        }
-    }
     /*swap the element on index posA with the element on index posB*/
     void swap(const unsigned int posA, const unsigned int posB){
 
