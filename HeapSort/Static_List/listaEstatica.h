@@ -94,7 +94,7 @@ public:
     }
 
     void creatHeap(bool print){
-        int m=  ((int)size-1)/2;
+        int m=  (((int) size)-1)/2;
         if(print) this->print(-100);
         for(int i = m; i >=0; i--){
             if(print) cout << "b = ";
