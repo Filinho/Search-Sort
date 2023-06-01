@@ -38,6 +38,7 @@ public:
             swap(elem1, elem2);
         }
     }
+    
     void swap(const unsigned int posA, const unsigned int posB){
 
         DataType aux = list[posA];
@@ -45,7 +46,6 @@ public:
         list[posA] = list[posB];
         list[posB] = aux;
     }
-    
     /*insert the value on position pos overwriting the element in pos.*/
     void overwrite_position(const unsigned int pos, const DataType value){
 
@@ -55,34 +55,40 @@ public:
     }
 
     void sort(){
-        StaticList auxL(*this);
-        rec_mergesort(0, size, &auxL);
+        heapSort();
     } 
 
-   void merge(const int left, const int mid, const int right, StaticList* auxL){
-
-        int leftAux = left;
-        int midAux = mid;
+    void heapify(int i){
+        int l = (2*i) + 1;
+        int r = (2*i) + 2;
+        int max = i;
+         
+        if(size > l && list[l] > list[max]) max = l;
+        if(size > r && list[r] > list[max]) max = r;
         
-        for(int i=left; i<right; ++i){
-
-            if(leftAux<mid && (!(midAux<right) || list[leftAux]<list[midAux])){
-
-                auxL->overwrite_position(i, list[leftAux++]);
-            }else{
-
-                auxL->overwrite_position(i, list[midAux++]);
-            }
+        if(max != i){
+            swap(i,max);
+            heapify(max);
         }
     }
 
-    void rec_mergesort(const int left, const int right, StaticList* auxL){
+    void createHeap(){
+        int m=  (((int) size)-1)/2;
 
-        if(left < right-1){
-            int mid = (left+right)/2;
-            auxL->rec_mergesort(left, mid, this);
-            auxL->rec_mergesort(mid, right, this);
-            auxL->merge(left, mid, right, this);
+        for(int i = m; i >=0; i--){
+            heapify(i);
         }
+    }
+
+    void heapSort(){
+
+        createHeap();
+        int aux = size; 
+        for(int i = aux-1; i>0 ;i--){
+            swap(0,i);
+            size--;
+            heapify(0);
+        }
+        size = aux;
     }
 };

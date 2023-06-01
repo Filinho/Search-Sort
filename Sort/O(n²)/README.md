@@ -2,7 +2,7 @@
 
 ## - Bubble Sort
 
-### Buble Sort is a sorting algorithm, which works by traversing the vector n times, and in each of them the largest element is placed at the end of the list until it is completely sorted.
+#### Buble Sort is a sorting algorithm, which works by traversing the vector n times, and in each of them the largest element is placed at the end of the list until it is completely sorted.
 
 ```c++
  void bubbleSort(){

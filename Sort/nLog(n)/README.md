@@ -34,8 +34,6 @@ void quickSort(int left, int right){
         privateQuickSort(left, center-1); // recursive call for the left of center
         privateQuickSort(center+1, right); // recursive call for the right of center
     }
-
-}   
 }
 ```
 
@@ -75,4 +73,53 @@ void mergeSort(const int left, const int right, StaticList* auxL){
     }
 }
 
+```
+
+## - Heap Sort
+
+#### - (Auxiliar) Heapify
+
+```c++
+void heapify(int i){
+    int l = (2*i) + 1;
+    int r = (2*i) + 2;
+
+    int max = i;
+    if(size > l && list[l] > list[max]) max = l;
+    if(size > r && list[r] > list[max]) max = r;
+
+    if(max != i){
+        swap(i,max);
+        heapify(max);
+    }
+}
+```
+
+#### - (Auxiliar) Create Heap
+
+```C++
+void createHeap(){
+    
+    int m=  (((int) size)-1)/2;
+
+    for(int i = m; i >=0; i--){
+
+        heapfy(i);
+    }
+}
+```
+
+#### - Heap Sort
+
+```c++
+void heapSort(){
+    createHeap();
+    int aux = size;
+    for(int i = aux-1; i>0 ;i--){
+        swap(0,i);
+        size--;
+        heapify(0);
+    }
+    size = aux;
+}
 ```

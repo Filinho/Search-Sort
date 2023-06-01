@@ -39,7 +39,14 @@ public:
         }
     }
 
+    void swap(const unsigned int posA, const unsigned int posB){
 
+        DataType aux = list[posA];
+
+        list[posA] = list[posB];
+        list[posB] = aux;
+    }
+    
     void sort(){
         privateQuickSort(0,size-1);
     } 
