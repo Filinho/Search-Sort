@@ -1,17 +1,17 @@
-#include<cstring>
-#include<iostream>
-#include<string>
-#include <string.h>
+# Search in Text
 
-using namespace std;
+## KMP
 
-    int * computeFailureFunction(string pattern){
+### - (Auxiliar) Compute Failure Function
+
+```c++
+int * computeFailureFunction(string pattern){
     int patternLength = size(pattern);
     int aux = 0;
 
-    int * FF = new int(patternLength); 
-    FF[0] = 0; 
-    
+    int * FF = new int(patternLength);
+    FF[0] = 0;
+
     int i = 1;
     while(i <patternLength){
         if(pattern[i] == pattern[aux]){
@@ -31,7 +31,11 @@ using namespace std;
     }
     return FF;
 }
+```
 
+### - KMP
+
+```c++
 int * KMP(string pattern, string txt){
     int * foundArray = new int(size(txt)+1);
     foundArray[0] = 0;
@@ -62,41 +66,4 @@ int * KMP(string pattern, string txt){
     }
     return foundArray;
 }
-
-void printtext(int * found, char * txt,int size_txt,  int sz_pattern){
-    
-    int buff_index = 1;
-    int aux = -1;
-     
-    for(int i = 0; i<= size_txt ;i++){
-        if(i == found[buff_index]){
-            aux = i + sz_pattern;
-            buff_index++;
-        }
-        if( i<aux) cout<< "\e[31;10m" << txt[i] << "\e[m";
-        
-        else cout<< "\e[64;10m" << txt[i] << "\e[m";
-    }
-
-    cout<<endl<<endl;
-}
-int main(){
-
-    string pattern,txt;
-    cin >> pattern;
-    cin >>txt;
-    
-    int * found = KMP(pattern,txt);
-    cout<< "found adresses : ";
-    for(int i = 1; i <= found[0]; i++){
-        if(i!=1) cout << ", ";
-        cout<<found[i];
-    }
-    
-
-    char *aux = &txt[0];
-    cout << ";"<< endl<< "pattern : " << pattern<<endl;
-    printtext(found,aux,size(txt),size(pattern));
-    delete(found);
-    
-}
+```
