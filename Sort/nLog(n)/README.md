@@ -2,7 +2,7 @@
 
 ## - Quick Sort
 
-### - (Auxiliar) Partition
+#### - (Auxiliar) Partition
 
 ```c++
 int partition(int left,int right){
@@ -24,7 +24,7 @@ int partition(int left,int right){
 }
 ```
 
-### QuickSort
+#### QuickSort
 
 ```c++
 void quickSort(int left, int right){
@@ -40,7 +40,7 @@ void quickSort(int left, int right){
 
 ## - Merge Sort
 
-### - (Auxiliar) Merge
+#### - (Auxiliar) Merge
 
 ```c++
 void merge(const int left, const int mid, const int right, StaticList* auxL){
@@ -61,7 +61,7 @@ void merge(const int left, const int mid, const int right, StaticList* auxL){
 }
 ```
 
-### Merge Sort
+#### Merge Sort
 
 ```c++
 void mergeSort(const int left, const int right, StaticList* auxL){
