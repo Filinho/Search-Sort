@@ -36,6 +36,7 @@ void quickSort(int left, int right){
     }
 
 }   
+}
 ```
 
 ## - Merge Sort
