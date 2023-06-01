@@ -2,6 +2,8 @@
 
 ## - Quick Sort
 
+### - (Auxiliar) Partition
+
 ```c++
 int partition(int left,int right){
     int pivot = list[right]; // set the pivot element as the elemet in index right
@@ -22,6 +24,8 @@ int partition(int left,int right){
 }
 ```
 
+### QuickSort
+
 ```c++
 void quickSort(int left, int right){
 
@@ -31,10 +35,12 @@ void quickSort(int left, int right){
         privateQuickSort(center+1, right); // recursive call for the right of center
     }
 
-}
+}   
 ```
 
 ## - Merge Sort
+
+### - (Auxiliar) Merge
 
 ```c++
 void merge(const int left, const int mid, const int right, StaticList* auxL){
@@ -55,9 +61,10 @@ void merge(const int left, const int mid, const int right, StaticList* auxL){
 }
 ```
 
-```c++
+### Merge Sort
 
-void rec_mergesort(const int left, const int right, StaticList* auxL){
+```c++
+void mergeSort(const int left, const int right, StaticList* auxL){
 
     if(left < right-1){
         int mid = (left+right)/2;
