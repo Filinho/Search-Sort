@@ -1,32 +1,70 @@
-# Bubble Sort
+# nLog(n) Sort Algorithm
 
-## Buble Sort is a sorting algorithm, which works by traversing the vector n times, and in each of them the largest element is placed at the end of the list until it is completely sorted.
-
-
-# Static List
+## - Quick Sort
 
 ```c++
-void bubblesort(){
+int partition(int left,int right){
+    int pivot = list[right]; // set the pivot element as the elemet in index right
+    int center = left; // initialize the center as the index of the left element
+    for( int i = left; i < right; i++){
+        /*if the pivot key is bigger than the key of the element in index i, the element in center most be swapped with the element in i, and the index center most be incremented*/
 
-        int swapPos = size-1;
-        bool swapped = true;
-
-        while(swapped){
-
-            swapped = false;
-
-            int n = swapPos;
-
-            for(int j=0; j<n; ++j){/*4 7 8 6 4 6 7 3 10 2*/
-
-                if(list[j].key > list[j+1].key){
-
-                    swap(j, j+1);
-                    swapPos = j;
-                    swapped = true;
-                }
+        if(list[i] < pivot){
+            swap(center,i);
+            center++;
             }
         }
-    }
+
+    /*after all interactios of the for, the variable center, will points exactly for the index where pivot is the center of the list, that means that, any element after center, is bigger thant the pivot, and any element before center, is smaller thant the center. with the index center, we swapp the center element with the right element*/
+
+    swap(center, right);
+    return center;
+}
 ```
 
+```c++
+void quickSort(int left, int right){
+
+    if(left < right){
+        int center = partition(left, right);// function that define the center
+        privateQuickSort(left, center-1); // recursive call for the left of center
+        privateQuickSort(center+1, right); // recursive call for the right of center
+    }
+
+}
+```
+
+## - Merge Sort
+
+```c++
+void merge(const int left, const int mid, const int right, StaticList* auxL){
+    int leftAux = left;
+    int midAux = mid;
+
+    for(int i=left; i<right; ++i){
+
+        if(leftAux<mid && (!(midAux<right) || list[leftAux]<list[midAux])){
+
+            auxL->overwrite_position(i, list[leftAux++]);
+
+        }else{
+
+            auxL->overwrite_position(i, list[midAux++]);
+        }
+    }
+}
+```
+
+```c++
+
+void rec_mergesort(const int left, const int right, StaticList* auxL){
+
+    if(left < right-1){
+        int mid = (left+right)/2;
+        auxL->rec_mergesort(left, mid, this);
+        auxL->rec_mergesort(mid, right, this);
+        auxL->merge(left, mid, right, this);
+    }
+}
+
+```
