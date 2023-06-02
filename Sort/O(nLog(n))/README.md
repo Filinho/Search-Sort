@@ -1,8 +1,8 @@
 # nLog(n) Sort Algorithm
 
-## - Quick Sort
+## Quick Sort
 
-#### - (Auxiliar) Partition
+#### (Auxiliar) Partition
 
 The partition function selects an item from the list and calls it pivot, in the implementation in question the rightmost item in the list is considered the pivot, however other choices can be made. After the end of its run, this Quick Sort helper function ensures that all items to the right of the pivot are greater than them, and all to the left are smaller.
 
@@ -39,9 +39,9 @@ void quickSort(int left, int right){
 }
 ```
 
-## - Merge Sort
+## Merge Sort
 
-#### - (Auxiliar) Merge
+#### (Auxiliar) Merge
 
 Merge auxiliar function is used in Merge Sort to perform a merge between two pre-sorted lists.
 
@@ -79,9 +79,9 @@ void mergeSort(const int left, const int right, StaticList* auxL){
 
 ```
 
-## - Heap Sort
+## Heap Sort
 
-#### - (Auxiliar) Heapify
+#### (Auxiliar) Heapify
 
 ```c++
 void heapify(int i){
@@ -99,7 +99,7 @@ void heapify(int i){
 }
 ```
 
-#### - (Auxiliar) Create Heap
+#### (Auxiliar) Create Heap
 
 ```C++
 void createHeap(){
