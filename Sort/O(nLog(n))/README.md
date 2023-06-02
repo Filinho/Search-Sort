@@ -4,6 +4,8 @@
 
 #### - (Auxiliar) Partition
 
+The partition function selects an item from the list and calls it pivot, in the implementation in question the rightmost item in the list is considered the pivot, however other choices can be made. After the end of its run, this Quick Sort helper function ensures that all items to the right of the pivot are greater than them, and all to the left are smaller.
+
 ```c++
 int partition(int left,int right){
     int pivot = list[right]; // set the pivot element as the elemet in index right
@@ -30,7 +32,7 @@ int partition(int left,int right){
 void quickSort(int left, int right){
 
     if(left < right){
-        int center = partition(left, right);// function that define the center
+        int center = partition(left, right);// function that define the center(pivot)
         privateQuickSort(left, center-1); // recursive call for the left of center
         privateQuickSort(center+1, right); // recursive call for the right of center
     }
@@ -40,6 +42,8 @@ void quickSort(int left, int right){
 ## - Merge Sort
 
 #### - (Auxiliar) Merge
+
+Merge auxiliar function is used in Merge Sort to perform a merge between two pre-sorted lists.
 
 ```c++
 void merge(const int left, const int mid, const int right, StaticList* auxL){
@@ -99,7 +103,7 @@ void heapify(int i){
 
 ```C++
 void createHeap(){
-    
+
     int m=  (((int) size)-1)/2;
 
     for(int i = m; i >=0; i--){
@@ -109,7 +113,7 @@ void createHeap(){
 }
 ```
 
-#### - Heap Sort
+#### Heap Sort
 
 ```c++
 void heapSort(){
